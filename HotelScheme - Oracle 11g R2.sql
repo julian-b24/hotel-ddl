@@ -1,8 +1,8 @@
 CREATE TABLE Hotel
 (
     hotelNo INTEGER,
-    hotelName VARCHAR,
-    city VARCHAR,
+    hotelName VARCHAR(22),
+    city VARCHAR(22),
 
     PRIMARY KEY(hotelNo)
 );
@@ -10,8 +10,8 @@ CREATE TABLE Hotel
 CREATE TABLE Guest
 (
     guestNo INTEGER,
-    guestName VARCHAR,
-    guestAddress VARCHAR,
+    guestName VARCHAR(22),
+    guestAddress VARCHAR(22),
 
     PRIMARY KEY(guestNo)
 );
@@ -20,7 +20,7 @@ CREATE TABLE Room
 (
     roomNo INTEGER,
     hotelNo INTEGER,
-    type VARCHAR,
+    type VARCHAR(22),
     price INTEGER,
 
     PRIMARY KEY(roomNo, hotelNo),
@@ -31,7 +31,7 @@ CREATE TABLE Room
     CHECK(roomNo > 0 AND roomNo < 121)
 );
 
-CREATE  TABLE Booking
+CREATE TABLE Booking
 (
     hotelNo INTEGER,
     guestNo INTEGER,
@@ -44,8 +44,7 @@ CREATE  TABLE Booking
     FOREIGN KEY (guestNo) REFERENCES Guest(guestNo),
     FOREIGN KEY (roomNo, hotelNo) REFERENCES Room(roomNo, hotelNo),
 
-    CHECK(dateFrom >= CURRENT_DATE),
-    CHECK(dateTo >= CURRENT_DATE AND dateTo >= dateFrom)
+    CHECK(dateTo >= dateFrom)
 );
 
 INSERT INTO Hotel VALUES(1, 'La Luna', 'Cali');
