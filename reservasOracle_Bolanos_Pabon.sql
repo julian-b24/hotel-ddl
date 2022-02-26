@@ -38,13 +38,15 @@ CREATE TABLE Booking
     dateFrom DATE,
     dateTo DATE,
     roomNo INTEGER,
+    actualDate DATE,
 
     PRIMARY KEY(hotelNo, guestNo, dateFrom),
     FOREIGN KEY (hotelNo) REFERENCES Hotel(hotelNo),
     FOREIGN KEY (guestNo) REFERENCES Guest(guestNo),
     FOREIGN KEY (roomNo, hotelNo) REFERENCES Room(roomNo, hotelNo),
 
-    CHECK(dateTo >= dateFrom)
+    CHECK(dateFrom >= actualDate),
+    CHECK(dateTo >= actualDate AND dateTo >= dateFrom)
 );
 
 INSERT INTO Hotel VALUES(1, 'La Luna', 'Cali');
@@ -80,13 +82,13 @@ INSERT INTO Room VALUES(1, 8, 'Family', 75);
 INSERT INTO Room VALUES(1, 9, 'Family', 75);
 INSERT INTO Room VALUES(1, 10, 'Single', 100);
 
-INSERT INTO Booking VALUES(1, 1, to_date('26 Feb 2022', 'DD Mon YYYY'), to_date('27 Feb 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(2, 2, to_date('27 Feb 2022', 'DD Mon YYYY'), to_date('28 Feb 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(3, 3, to_date('01 Mar 2022', 'DD Mon YYYY'), to_date('02 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(4, 4, to_date('02 Mar 2022', 'DD Mon YYYY'), to_date('03 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(5, 5, to_date('03 Mar 2022', 'DD Mon YYYY'), to_date('04 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(6, 6, to_date('04 Mar 2022', 'DD Mon YYYY'), to_date('05 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(7, 7, to_date('05 Mar 2022', 'DD Mon YYYY'), to_date('06 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(8, 8, to_date('06 Mar 2022', 'DD Mon YYYY'), to_date('07 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(9, 9, to_date('07 Mar 2022', 'DD Mon YYYY'), to_date('08 Mar 2022', 'DD Mon YYYY'), 1);
-INSERT INTO Booking VALUES(10, 10, to_date('08 Mar 2022', 'DD Mon YYYY'), to_date('09 Mar 2022', 'DD Mon YYYY'), 1);
+INSERT INTO Booking VALUES(1, 1, to_date('26 Feb 2023', 'DD Mon YYYY'), to_date('27 Feb 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(2, 2, to_date('27 Feb 2023', 'DD Mon YYYY'), to_date('28 Feb 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(3, 3, to_date('01 Mar 2023', 'DD Mon YYYY'), to_date('02 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(4, 4, to_date('02 Mar 2023', 'DD Mon YYYY'), to_date('03 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(5, 5, to_date('03 Mar 2023', 'DD Mon YYYY'), to_date('04 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(6, 6, to_date('04 Mar 2023', 'DD Mon YYYY'), to_date('05 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(7, 7, to_date('05 Mar 2023', 'DD Mon YYYY'), to_date('06 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(8, 8, to_date('06 Mar 2023', 'DD Mon YYYY'), to_date('07 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(9, 9, to_date('07 Mar 2023', 'DD Mon YYYY'), to_date('08 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
+INSERT INTO Booking VALUES(10, 10, to_date('08 Mar 2023', 'DD Mon YYYY'), to_date('09 Mar 2023', 'DD Mon YYYY'), 1, SYSDATE);
